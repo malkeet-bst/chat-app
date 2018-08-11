@@ -43,16 +43,19 @@ export default class LoginForm extends Component {
 				<form onSubmit={this.handleSubmit} className="login-form" >
 
 					<label htmlFor="nickname">
-						<h2>Got a nickname?</h2>
+						<h2>MSD Talkies..</h2>
 					</label>
+					<div>
 					<input
 						ref={(input)=>{ this.textInput = input }} 
 						type="text"
 						id="nickname"
 						value={nickname}
 						onChange={this.handleChange}
-						placeholder={'MYCoolUSername'}
+						placeholder={'John Doe'}
 						/>
+						<button className="submit-btn">Submit</button>
+						</div>
 						<div className="error">{error ? error:null}</div>
 
 				</form>

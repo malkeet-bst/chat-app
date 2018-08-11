@@ -41,7 +41,7 @@ export default class SideBar extends Component{
 		return (
 			<div id="side-bar">
 					<div className="heading">
-						<div className="app-name">Our Cool Chat <FAChevronDown /></div>
+						<div className="app-name">MSD Talkies<FAChevronDown /></div>
 						<div className="menu">
 							<FAMenu />
 						</div>
@@ -58,12 +58,12 @@ export default class SideBar extends Component{
 					<div className="side-bar-select">
 						<div 
 							onClick = { ()=>{ this.setActiveSideBar(SideBar.type.CHATS) } }
-							className={`side-bar-select__option ${ activeSideBar === SideBar.type.CHATS ? 'active':''}`}>
+							className={`side-bar-select__option side-bar-chats ${ activeSideBar === SideBar.type.CHATS ? 'active':''}`}>
 							<span>Chats</span>
 						</div>
 						<div 
 							onClick = { ()=>{ this.setActiveSideBar(SideBar.type.USERS) } }
-							className={`side-bar-select__option ${ activeSideBar === SideBar.type.USERS ? 'active':''}`}>
+							className={`side-bar-select__option side-bar-users ${ activeSideBar === SideBar.type.USERS ? 'active':''}`}>
 							<span>Users</span>
 						</div>
 					</div>
