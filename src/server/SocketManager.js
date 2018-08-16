@@ -1,4 +1,5 @@
 const io = require('./index.js').io
+const uuidv4 = require('uuid/v4')
 
 const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, 
 		LOGOUT, COMMUNITY_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT,
@@ -18,6 +19,31 @@ module.exports = function(socket){
 	let sendMessageToChatFromUser;
 
 	let sendTypingFromUser;
+
+
+
+	// socket.on(VERIFY_USER, (nickName, number, callback) => {
+	// 	const accountSid = 'AC9a04c0902b0032beed825c620785f7e5';
+	// 	const authToken = '5ac98e6db50bb0c902f23dc044c276d4';
+	// 	const client = require('twilio')(accountSid, authToken);
+	// 	let otp = uuidv4();
+	// 	console.log({ otp })
+	// 	client.messages
+	// 		.create({
+	// 			body: otp.slice(0, 4),
+	// 			from: '+19376967696',
+	// 			to: number
+	// 		})
+	// 		.then(message => console.log(message.sid))
+	// 		.done();
+	// 	callback({ otp: otp, user: createUser({ name: nickName, number: number, socketId: socket.id, otp: otp.slice(0, 4) }) })
+
+		// if(isUser(connectedUsers, number)){
+		// 	callback({ isUser:true, user:null })
+		// }else{
+		// 	callback({ isUser:false, user:createUser({name:number, socketId:socket.id})})
+		// }
+	//})
 
 	//Verify Username
 	socket.on(VERIFY_USER, (nickname, callback)=>{
@@ -45,7 +71,7 @@ module.exports = function(socket){
 	//User disconnects
 	socket.on('disconnect', ()=>{
 		if("user" in socket){
-			connectedUsers = removeUser(connectedUsers, socket.user.name)
+		//	connectedUsers = removeUser(connectedUsers, socket.user.name)
 
 			io.emit(USER_DISCONNECTED, connectedUsers)
 			console.log("Disconnect", connectedUsers);
@@ -55,7 +81,7 @@ module.exports = function(socket){
 
 	//User logsout
 	socket.on(LOGOUT, ()=>{
-		connectedUsers = removeUser(connectedUsers, socket.user.name)
+		//connectedUsers = removeUser(connectedUsers, socket.user.name)
 		io.emit(USER_DISCONNECTED, connectedUsers)
 		console.log("Disconnect", connectedUsers);
 
@@ -75,6 +101,7 @@ module.exports = function(socket){
 	})
 
 	socket.on(PRIVATE_MESSAGE, ({reciever, sender, activeChat})=>{
+		console.log({reciever},{sender},{activeChat},{connectedUsers})
 		if(reciever in connectedUsers){
 			const recieverSocket = connectedUsers[reciever].socketId
 			if(activeChat === null || activeChat.id === communityChat.id){

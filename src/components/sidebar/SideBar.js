@@ -6,6 +6,7 @@ import MdEject from 'react-icons/lib/md/eject'
 import SideBarOption from './SideBarOption'
 import { last, get, differenceBy } from 'lodash'
 import { createChatNameFromUsers } from '../../Factories'
+import { PRIVATE_MESSAGE } from '../../Events'
 export default class SideBar extends Component {
 	static type = {
 		USERS: "users",
@@ -28,13 +29,22 @@ export default class SideBar extends Component {
 	}
 
 	addChatForUser = (reciever) => {
-		this.props.onSendPrivateMessage(reciever)
-		this.setActiveSideBar(SideBar.type.CHATS)
+
+		let index = this.props.chats.findIndex(chat => chat.users[0] === reciever);
+		if (-1 === -1) {
+			this.props.onSendPrivateMessage(reciever)
+			this.setActiveSideBar(SideBar.type.CHATS)
+			// const { socket, user } = this.props
+			// const { activeChat } = this.state
+			// socket.emit(PRIVATE_MESSAGE, { reciever, sender: user.name, activeChat })
+			// let chat = {}
+			// /this.props.setActiveChat(this.props.chats[this.props.chats.length - 1])
+		}
 	}
 	setActiveSideBar = (type) => {
 		this.setState({ activeSideBar: type })
 	}
-	
+
 	render() {
 		const { chats, activeChat, user, setActiveChat, logout, users } = this.props
 		const { reciever, activeSideBar } = this.state
@@ -70,7 +80,7 @@ export default class SideBar extends Component {
 				<div
 					className="users"
 					ref='users'
-					onClick={(e) => { (e.target === this.refs.user) && setActiveChat(null) }}>
+					onClick={(e) => { (e.target === this.refs.user) && setActiveChat(e.target) }}>
 
 					{
 						activeSideBar === SideBar.type.CHATS ?
@@ -78,10 +88,13 @@ export default class SideBar extends Component {
 								return (
 									<SideBarOption
 										key={chat.id}
+										chats={chats}
+										showDelete={chat}
 										lastMessage={get(last(chat.messages), 'message', '')}
 										name={chat.isCommunity ? chat.name : createChatNameFromUsers(chat.users, user.name)}
 										active={activeChat.id === chat.id}
 										onClick={() => { this.props.setActiveChat(chat) }}
+										handleDeleteChat={this.props.handleDeleteChat}
 									/>
 								)
 							})
@@ -92,6 +105,7 @@ export default class SideBar extends Component {
 									key={user.id}
 									name={user.name}
 									onClick={() => { this.addChatForUser(user.name) }}
+									handleDeleteChat={this.props.handleDeleteChat}
 								/>
 							})
 					}

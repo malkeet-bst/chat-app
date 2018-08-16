@@ -122,11 +122,25 @@ export default class ChatContainer extends Component {
 			this.setState({chats:newChats})
 		}
 	}
+
+	revealDeleteOptions = (showDelete) => {
+		// this.setState({ showDeleteOption: !this.state.showDeleteOption, isOpen: !this.state.isOpen })
+		 let updatedArr = this.state.chats.filter(chat=>chat.id!=showDelete.id);
+		 this.setState({chats:updatedArr})
+		 console.log({updatedArr})
+ }
 	toggleMenu = () => {
 		if (document.getElementById('side-bar').offsetWidth === 0) {
-			document.getElementById('side-bar').style.width = '33.75%';
+			if(window.innerWidth>550){
+				document.getElementById('side-bar').style.width = '33.75%';
+				document.getElementById('chat-room-container').style.width = '67.25%';
+			}else{
+				document.getElementById('side-bar').style.width = '50%';
+				document.getElementById('chat-room-container').style.width = '50%';
+			}
+			
 			document.getElementById('menuHeading').style.visibility='hidden';
-			document.getElementById('chat-room-container').style.width = '76.25%';
+			
 		} else {
 			document.getElementById('side-bar').style.width = 0;
 			document.getElementById('menuHeading').style.visibility='visible';
@@ -185,7 +199,7 @@ export default class ChatContainer extends Component {
 		const { user, logout } = this.props
 		const { chats, activeChat, users } = this.state
 		return (
-			<div className="container">
+			<div className="chat-container">
 				<SideBar
 					logout={logout}
 					chats={chats}
@@ -195,6 +209,7 @@ export default class ChatContainer extends Component {
 					setActiveChat={this.setActiveChat}
 					onSendPrivateMessage={this.sendOpenPrivateMessage}
 					handleClick={this.toggleMenu}
+					handleDeleteChat={this.revealDeleteOptions}
 					/>
 				<div id="chat-room-container" className="chat-room-container">
 					{
