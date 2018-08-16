@@ -546,12 +546,12 @@ input::placeholder {
 }
 
 .emoji-picker {
-  position: absolute;
-  bottom: 64px;
-  width: 100%;
+  position: absolute !important;
+  bottom: 64px !important;
+  width: 100% !important;
   .emoji {
-    padding: 25px;
-    background-size: 32px;
+    padding: 25px !important;
+    background-size: 32px !important;
   }
 }
 
