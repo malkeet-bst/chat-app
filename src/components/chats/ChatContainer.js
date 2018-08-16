@@ -135,8 +135,8 @@ export default class ChatContainer extends Component {
 				document.getElementById('side-bar').style.width = '33.75%';
 				document.getElementById('chat-room-container').style.width = '67.25%';
 			}else{
-				document.getElementById('side-bar').style.width = '50%';
-				document.getElementById('chat-room-container').style.width = '50%';
+				document.getElementById('side-bar').style.width = '100%';
+				document.getElementById('chat-room-container').style.width = '0%';
 			}
 			
 			document.getElementById('menuHeading').style.visibility='hidden';
@@ -193,6 +193,9 @@ export default class ChatContainer extends Component {
 	}
 
 	setActiveChat = (activeChat)=>{
+		if(window.innerWidth<550){
+			this.toggleMenu()
+		}
 		this.setState({activeChat})
 	}
 	render() {

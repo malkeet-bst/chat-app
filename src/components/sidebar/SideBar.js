@@ -31,14 +31,15 @@ export default class SideBar extends Component {
 	addChatForUser = (reciever) => {
 
 		let index = this.props.chats.findIndex(chat => chat.users[0] === reciever);
-		if (-1 === -1) {
+		if (index === -1) {
 			this.props.onSendPrivateMessage(reciever)
 			this.setActiveSideBar(SideBar.type.CHATS)
+		}else{
 			// const { socket, user } = this.props
 			// const { activeChat } = this.state
 			// socket.emit(PRIVATE_MESSAGE, { reciever, sender: user.name, activeChat })
 			// let chat = {}
-			// /this.props.setActiveChat(this.props.chats[this.props.chats.length - 1])
+			this.props.setActiveChat(this.props.chats[index])
 		}
 	}
 	setActiveSideBar = (type) => {
@@ -51,10 +52,11 @@ export default class SideBar extends Component {
 		return (
 			<div id="side-bar">
 				<div className="heading">
-					<div className="app-name">MSD Talkies<FAChevronDown /></div>
-					<div onClick={() => { this.props.handleClick() }} className="menu">
+				<div onClick={() => { this.props.handleClick() }} className="menu">
 						<FAMenu />
 					</div>
+					<div className="app-name">MSD Talkies<FAChevronDown /></div>
+					
 				</div>
 				<form onSubmit={this.handleSubmit} className="search">
 					<i className="search-icon"><FASearch /></i>

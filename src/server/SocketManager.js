@@ -71,7 +71,8 @@ module.exports = function(socket){
 	//User disconnects
 	socket.on('disconnect', ()=>{
 		if("user" in socket){
-		connectedUsers = removeUser(connectedUsers, socket.user.name)
+			connectedUsers = removeUser(connectedUsers, socket.user.name)
+
 			io.emit(USER_DISCONNECTED, connectedUsers)
 			console.log("Disconnect", connectedUsers);
 		}
@@ -96,6 +97,7 @@ module.exports = function(socket){
 	})
 
 	socket.on(TYPING, ({chatId, isTyping})=>{
+		if(typeof(sendTypingFromUser)=='function')
 		sendTypingFromUser(chatId, isTyping)
 	})
 
