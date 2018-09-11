@@ -3,6 +3,7 @@ import { LOGIN_USER } from "../Events";
 import Header from './Header'
 import { createHashHistory } from 'history'
 import { Link, Redirect } from "react-router-dom";
+import Footer from "./common/Footer";
 export const history = createHashHistory()
 
 export default class LoginForm extends Component {
@@ -157,6 +158,7 @@ export default class LoginForm extends Component {
 					</section>
 					<div className="styles-altText"><span>Don't have an MsdTalkies account yet? <Link className="page-styles-link" to="/signup">Sign up now!</Link></span></div>
 				</div >
+				<Footer />
 			</div>
 		);
 	}

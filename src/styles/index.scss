@@ -22,6 +22,7 @@ textarea {
   position: relative;
   display: flex;
   width: 80%;
+  margin-bottom: 200px !important;
   max-width: 750px;
   min-height: 350px;
   border-radius: 4px;
@@ -985,6 +986,21 @@ input::placeholder {
     box-shadow: 0 5px 4px -5px rgba(0, 0, 0, 0.2);
     user-select: none;
   }
+}
+.footer{
+  position: fixed;
+  height: 80px;
+  width: 100%;
+  bottom: 0;
+  padding-left: 1rem;
+  padding-left: 2rem;
+  display: flex;
+  background: #373f46;
+  padding-right: 2rem;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .introjs-tooltip {
   box-sizing: content-box;
