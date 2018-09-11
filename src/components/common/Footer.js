@@ -9,7 +9,7 @@ export default class Footer extends Component {
   render() {
     return <div className="footer">
         <span>
-          Developed and Managed by <a href="https://www.linkedin.com/in/malkeet-singh/" target="_blank">
+          Developed and Managed by <a className="age-styles-link" href="https://www.linkedin.com/in/malkeet-singh/" target="_blank">
             Malkeet Singh
           </a>
         </span>
