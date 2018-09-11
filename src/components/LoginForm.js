@@ -27,9 +27,9 @@ export default class LoginForm extends Component {
 			return <Redirect to='/chat' />
 		}
 	}
-	setUser = ({ user, isUser, message }) => {
-
-		if (message && message!=''&& message.error != '') {
+	setUser = ({ user, allUsers, isUser, message }) => {
+		//console.log({ allUsers })
+		if (message && message != '' && message.error != '') {
 			this.setState({ showError: message.text });
 			this.setState({ showLoader: false });
 		} else {
@@ -104,13 +104,10 @@ export default class LoginForm extends Component {
 						<p className="styles-description">
 							<span>
 								Having trouble signing in? {" "}
-								<a className="page-styles-link" href="/remind-usernames/">
-									Retrieve your username(s)
-              </a>{" "}
+								<Link className="page-styles-link" to="/resetUsernames">Retrieve your username(s)</Link>{" "}
 								or{" "}
-								<a className="page-styles-link" href="/reset-password/">
-									reset your password.
-              </a>
+								<Link className="page-styles-link" to="/resetPassword">reset your password.</Link>
+							
 							</span>
 						</p>
 					</section>

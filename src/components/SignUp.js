@@ -110,7 +110,7 @@ export default class LoginForm extends Component {
 					</span>
             </p>
           </section>
-          <section id="login" className="login">
+          <section id="login" className="signup">
             {this.state.showLoader ? (
               <div className="loader-container" />
             ) : (

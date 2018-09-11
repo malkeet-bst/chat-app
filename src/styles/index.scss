@@ -76,6 +76,7 @@ textarea {
 
 .login {
   width: 100%;
+  height: 350px;
   overflow: hidden;
   border-radius: 0 4px 4px 0;
   .error-block {
@@ -100,6 +101,10 @@ textarea {
     justify-content: center;
     flex-shrink: 0;
   }
+}
+.signup{
+  @extend .login;
+  height:auto;
 }
 
 .blur-background {
@@ -876,9 +881,11 @@ input::placeholder {
 .loader-container {
   display: flex;
   margin: 0 auto;
+  top: 25%;
+  position: relative;
   align-items: center;
   align-content: center;
-  margin-top: 25%;
+  // margin-top: 25%;
   border: 16px solid #f3f3f3;
   /* Light grey */
   border-top: 16px solid #3498db;
