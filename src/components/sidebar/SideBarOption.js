@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import face1 from '../../images/face1.jpeg'
 
 export default class SideBarOption extends PureComponent {
     constructor(props) {
@@ -22,17 +23,22 @@ export default class SideBarOption extends PureComponent {
         onClock: () => { }
     }
     render() {
-        const { active, lastMessage, name, onClick, key, showDelete } = this.props
+        const { active, lastMessage, name, onClick, imagePreviewUrl, showDelete } = this.props
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img className="user-avatar" src={imagePreviewUrl} />);
+        } else {
+            $imagePreview = (<img id="user-pic" className="user-avatar" src={face1} />);
+        }
         return (
             <div
                 className={`user ${active ? 'active' : ''}`}
                 onClick={onClick}
             >
-                {
-                    name[0] ? <div className="user-photo">{name[0].toUpperCase()}</div>
-                        :
-                        <div className="user-photo">{name[0]}</div>
-                }
+                
+                <div className="user-photo">
+                    {$imagePreview}
+                </div>
 
                 <div className="user-info">
                     <div className="name">{name}</div>
