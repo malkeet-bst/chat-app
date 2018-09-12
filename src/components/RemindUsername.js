@@ -10,7 +10,7 @@ export default class RemindUsername extends Component {
 
 	render() {
 		return (
-			<div>Coming soon, Untill then try to remember your username</div>
+			<div>Coming soon, Untill then try to remember your username.</div>
 		);
 	}
 }
