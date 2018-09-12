@@ -22,7 +22,7 @@ textarea {
   position: relative;
   display: flex;
   width: 80%;
-  margin-bottom: 100 !important;
+  margin-bottom: 200px !important;
   max-width: 750px;
   min-height: 350px;
   border-radius: 4px;
@@ -697,12 +697,12 @@ input::placeholder {
 }
 
 .emoji-picker {
-  position: absolute;
-  bottom: 64px;
-  width: 100%;
+  position: absolute !important;
+  bottom: 64px !important;
+  width: 100% !important;
   .emoji {
-    padding: 25px;
-    background-size: 32px;
+    padding: 25px !important;
+    background-size: 32px !important;
   }
 }
 
