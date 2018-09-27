@@ -502,9 +502,6 @@ input::placeholder {
   min-height: 50px;
   margin: 2px 15px;
   animation: 0.65s ease-out 0s show;
-  .time {
-    order: 1;
-  }
   .data {
     order: 2;
     height: 100%;
@@ -514,6 +511,15 @@ input::placeholder {
     font-size: 16px;
     color: darkgray;
     text-align: right;
+  }
+  .replyToMsg{
+    background: steelblue;
+    text-align: center;
+    padding: 13px;
+    border-bottom: 3px solid darkgreen;
+    border-radius: 10px;
+    min-width: 160px;
+    margin-bottom: 10px;
   }
   .message {
     background: #fff;
@@ -544,7 +550,7 @@ input::placeholder {
     text-align: right;
     justify-content: flex-end;
     .time {
-      order: 2;
+      font-size: 12px;
       margin-left: 25px;
     }
     .data {
@@ -555,10 +561,16 @@ input::placeholder {
       display: none;
     }
     .message {
+      display: flex;
+      flex-direction: column;
       background: $theme-color;
       color: #fff;
       border-top-right-radius: 0;
       border-top-left-radius: 5px;
+      .replyToMsg{
+        background: steelblue;
+      }
+      
       &::before {
         border-top-color: $theme-color;
         border-left-color: $theme-color;
@@ -572,18 +584,23 @@ input::placeholder {
     text-align: left;
     justify-content: flex-start;
     .time {
-      order: 2;
       margin-left: 25px;
+      font-size: 12px;
     }
     .data {
       margin-left: 0;
       order: 1;
     }
     .message {
+      display: flex;
+      flex-direction: column;
       background: steelblue;
       color: #fff;
       border-top-right-radius: 0;
       border-top-left-radius: 5px;
+      .replyToMsg{
+        background: #5f9ea0;
+      }
       &::before {
         border-top-color: steelblue;
         border-left-color: steelblue;
@@ -767,14 +784,13 @@ input::placeholder {
     padding: 4px 18px;
     line-height: 30px;
   }
-  .cust-icon {
-    padding: 7px;
-    visibility: hidden;
-  }
 }
 
 
-
+.cust-icon {
+  padding: 7px;
+  visibility: hidden;
+}
 .list-item:hover {
   cursor: pointer;
   background: #f5f5f5;
