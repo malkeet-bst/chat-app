@@ -164,7 +164,7 @@ export default class SideBar extends Component {
 	}
 	render() {
 
-		const { chats, activeChat, user, setActiveChat, logout, users } = this.props
+		const { chats, activeChat, user, setActiveChat, logout, socket } = this.props
 		const { reciever, activeSideBar, imagePreviewUrl, userEmail, showError, showSuccess } = this.state
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
@@ -286,19 +286,18 @@ export default class SideBar extends Component {
 			}}>
 				{activeSideBar === SideBar.type.CHATS ? chats.map((chat, index) => {
 					if (chat != null) {
-						return <SideBarOption key={uuidv4()} userStatus={chat.socketId == undefined ? false : true} chatObj={chats[index]} showDelete={chat} lastMessage={get(last(chat.messages), "message", "")}
+						return <SideBarOption key={uuidv4()} userStatus={chat.socketId == undefined ? false : true} chatObj={chats[index]} 
+						showDelete={chat} lastMessage={get(last(chat.messages), "message", "")}
 							name={chat.isCommunity ? chat.name : createChatNameFromUsers(chat.users, user.name)}
-							active={activeChat.id === chat.id} userStatus={chat.online}
+							active={activeChat.id === chat.id} userStatus={chat.online} user={user} socket={socket}
+							clearChat={this.props.clearChat}
+							deleteChat={this.props.deleteChat}
 							onClick={() => {
 								this.props.setActiveChat(chat);
 							}} handleDeleteChat={this.props.handleDeleteChat} />;
 					}
-				}) : differenceBy(users, [user], "name").map((user, index) => {
-					return <SideBarOption key={uuidv4()} name={user.name}
-						userStatus={user.socketId == undefined ? false : true} onClick={() => {
-							this.addChatForUser(user.name);
-						}} handleDeleteChat={this.props.handleDeleteChat} />;
-				})}
+				}) : ''
+				}
 			</div>
 			<div className="current-user">
 				<span>Help</span>

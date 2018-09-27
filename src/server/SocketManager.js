@@ -1,7 +1,7 @@
 const io = require('./index.js').io
 const uuidv4 = require('uuid/v4')
 
-const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED,
+const { VERIFY_USER,CLEAR_CHAT, USER_CONNECTED, USER_DISCONNECTED,
 	LOGOUT, COMMUNITY_CHAT, FRIENDS_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT, MESSAGE_SENT_OFFLINE,
 	TYPING, PRIVATE_MESSAGE, REQUEST_SENT, UPDATE_FRIEND_LIST, VERIFY_FRIEND, LOGIN_USER, NEW_CHAT_USER, CHANGE_IMAGE } = require('../Events')
 
@@ -127,6 +127,21 @@ module.exports = function (socket) {
 		})
 	})
 
+socket.on(CLEAR_CHAT,(userName,friendName)=>{
+	MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
+		if (err) throw err;
+		var dbo = db.db("msdtalkies1");
+		
+			dbo.collection("customers").updateOne(
+				{ name: userName, "friendsList.name": friendName },
+				{ $set: { "friendsList.$.messages": []} },
+				function (err, result) {
+					if (err) throw err;
+
+				})
+	
+})
+})
 
 	socket.on(REQUEST_SENT, (flag, user, chat, callback) => {
 
