@@ -767,12 +767,13 @@ input::placeholder {
     padding: 4px 18px;
     line-height: 30px;
   }
+  .cust-icon {
+    padding: 7px;
+    visibility: hidden;
+  }
 }
 
-.cust-icon {
-  padding: 7px;
-  visibility: hidden;
-}
+
 
 .list-item:hover {
   cursor: pointer;
